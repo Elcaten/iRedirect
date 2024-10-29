@@ -1,0 +1,39 @@
+{
+    "name": "Elcaten's Source",
+    "subtitle": "All my apps in one place.",
+    "description": "Welcome to my source! Here you'll find all of my apps.",
+    "iconURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/OctoSource.png",
+    "headerURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/OceanHeader.png",
+    "website": "https://example.com",
+    "tintColor": "#4185A9",
+    "featuredApps": [
+        "com.elcaten.iredirect.iRedirect",
+    ],
+    "apps": [
+        {
+            "name": "iRedirect",
+            "bundleIdentifier": "com.elcaten.iredirect.iRedirect",
+            "developerName": "Elcaten",
+            "subtitle": "Personal redirect app.",
+            "localizedDescription": "This is an awesome app only available on AltStore.",
+            "iconURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/FishApp.png",
+            "tintColor": "#5CA399",
+            "screenshots": [],
+            "versions": [
+                {
+                    "version": "1.0",
+                    "date": "2024-10-28T07:00:00-08:00",
+                    "size": 10000000,
+                    "downloadURL": "https://example.com/myapp_v1.0.ipa",
+                    "localizedDescription": "Initial release."
+                }
+            ],
+            "appPermissions": {
+                "entitlements": [
+                    "com.apple.security.application-groups"
+                ]
+            }
+        }
+    ],
+    "news": []
+}
