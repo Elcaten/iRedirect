@@ -1,14 +1,11 @@
 {
     "$schema": "https://elcaten.github.io/iRedirect/schema.json",
-    "exclusiveMaximum": true,
-    "maximum": 5,
     "name": "Elcaten's Source",
-    "subtitle": "All my apps in one place.",
-    "description": "Welcome to my source! Here you'll find all of my apps.",
-    "iconURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/OctoSource.png",
-    "headerURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/OceanHeader.png",
-    "website": "https://example.com",
-    "tintColor": "#4185A9",
+    "description": "Icons generated with hotpot.ai/art-generator",
+    "iconURL": "https://elcaten.github.io/iRedirect/icon.png",
+    "headerURL": "https://elcaten.github.io/iRedirect/header.png",
+    "website": "https://elcaten.github.io/iRedirect/",
+    "tintColor": "#E6DCD7",
     "featuredApps": [
         "com.elcaten.iredirect.iRedirect"
     ],
@@ -18,13 +15,14 @@
             "bundleIdentifier": "com.elcaten.iredirect.iRedirect",
             "developerName": "Elcaten",
             "subtitle": "Personal redirect app.",
-            "localizedDescription": "This is an awesome app only available on AltStore.",
-            "iconURL": "https://f000.backblazeb2.com/file/rileytestut/ExampleSource/FishApp.png",
-            "tintColor": "#5CA399",
+            "localizedDescription": "Custom URL redirect manager",
+            "iconURL": "https://elcaten.github.io/iRedirect/iredirect_icon.png",
+            "tintColor": "#E6DCD7",
             "screenshots": [],
             "versions": [
                 {
                     "version": "1.0",
+                    "buildVersion": "1.0",
                     "date": "2024-10-28T07:00:00-08:00",
                     "size": 10000000,
                     "downloadURL": "https://elcaten.github.io/iRedirect/iRedirect (iOS) 29-10-24, 19.56.ipa",
