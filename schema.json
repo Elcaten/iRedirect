@@ -1,0 +1,303 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AltStore source schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of your source as it will appear in AltStore."
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "A short, one-sentence description of your source. This will appear underneath the source's name on its About page."
+    },
+    "description": {
+      "type": "string",
+      "description": "A full-length description of your source. This can include any information you believe is relevant for your source, such as information about your apps or additional links."
+    },
+    "iconURL": {
+      "type": "string",
+      "description": "A link to an image that will be used to visually identify your source. It will appear as a circle. If not provided, this defaults to the iconURL of the first app listed in your source."
+    },
+    "headerURL": {
+      "type": "string",
+      "description": "A link to an image that will be displayed as the header of your source's About page. The image will be blurred by default, but can be viewed by swiping the source's info banner. 3:2 aspect ratio is recommended for best results. If not provided, this defaults to your source's iconURL."
+    },
+    "website": {
+      "type": "string",
+      "description": "A link to the primary website for your source. It will be displayed underneath your source's name on its About page."
+    },
+    "tintColor": {
+      "type": "string",
+      "description": "A color that will be used to theme your source's About page. We recommend using a color that works well with your source's icon for consistent theming, but you are free to choose any color you want. Black and white tint colors will be automatically adjusted for legibility. This must be in hexadecimal format (e.g #F54F32 or C9B632). If not provided, this defaults to the tintColor of the first app listed in your source."
+    },
+    "featuredApps": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "An ordered list of app bundleIdentifier's you want featured on your source's About page. Currently, only the first five will be displayed. If not provided, this defaults to the first five apps listed in your source."
+    },
+    "apps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The name of your app as it will appear on its store page."
+          },
+          "bundleIdentifier": {
+            "type": "string",
+            "description": "Your app's bundle identifier (CFBundleIdentifier). It is case sensitive and should match exactly what is in your Info.plist. A source cannot have multiple apps with the same bundle identifier."
+          },
+          "marketplaceID": {
+            "type": "string",
+            "description": "The \"Apple ID\" of your notarized app. You can find this on your app's App Store Connect page under \"App Information.\". Not required for non-notarized apps distributed with AltStore (World)"
+          },
+          "developerName": {
+            "type": "string",
+            "description": "The name of the developer or developers as it will appear on the store page."
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "A short, one-sentence description of your app that will appear in the Browse tab of AltStore."
+          },
+          "localizedDescription": {
+            "type": "string",
+            "description": "A full-length description of your app. This can include any information you believe is relevant for your app, such as feature descriptions or additional links."
+          },
+          "iconURL": {
+            "type": "string",
+            "description": "A link to you app's icon image. It will automatically be masked to an app icon shape."
+          },
+          "tintColor": {
+            "type": "string",
+            "description": "The color used to theme your app's store page. We recommend using your app's existing tint color (if it has one), but you are free to choose any color you want. This must be in hexadecimal format (e.g #F54F32 or C9B632)"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "developer",
+              "entertainment",
+              "games",
+              "lifestyle",
+              "other",
+              "photo-video",
+              "social",
+              "utilities"
+            ],
+            "description": "The store category best representing your app. If no category is provided it will default to \"other\""
+          },
+          "screenshots": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "iphone": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/screenshot"
+                    }
+                  },
+                  "ipad": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/definitions/screenshot"
+                    }
+                  }
+                },
+                "required": [
+                  "iphone",
+                  "ipad"
+                ],
+                "description": "If your app supports both iPhone and iPad and you want to use different screenshots for each device, you can provide multiple arrays nested under the iphone and ipad keys, respectively, using the same format."
+              },
+              {
+                "type": "array",
+                "items": {
+                  "$ref": "#/definitions/screenshot"
+                },
+                "description": "If a screenshot has an aspect ratio of 9:19.5 (aka a portrait Face ID iPhone), you can optionally list the URL directly instead of a full Screenshot object."
+              }
+            ]
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "version": {
+                  "type": "string",
+                  "description": "Your app's version number (CFBundleShortVersionString). It is case sensitive and should match exactly what is in your Info.plist."
+                },
+                "buildVersion": {
+                  "type": "string",
+                  "description": "Your app's build number (CFBundleVersion). It is case sensitive and should match exactly what is in your Info.plist."
+                },
+                "marketingVersion": {
+                  "type": "string",
+                "description": "The full version displayed to users on your app's store page and throughout the UI. This can be anything you want and does not need to match version or buildVersion. If not provided, this will default to combining version and buildVersion,e.g. 1.3 (4)"
+                },
+                "date": {
+                  "type": "string",
+                  "description": "The release date for this version. This should be in ISO 8601 format (e.g. 2023-2-17 or 2023-02-17T12:00:00-06:00)"
+                },
+                "localizedDescription": {
+                  "type": "string",
+                  "description": "A description of what's new in this version. You can use this to tell users about new features, bugs fixes, etc."
+                },
+                "downloadURL": {
+                  "type": "string",
+                  "description": "The URL where your ADP directory is hosted. For sideloading, this only needs to be the .ipa file itself." 
+                },
+                "minOSVersion": {
+                  "type": "string",
+                  "description": "The minimum iOS version supported by this release. AltStore will hide any updates that are not supported by the user's device."
+                },
+                "maxOSVersion": {
+                  "type": "string",
+                  "description": "The maximum iOS version supported by this release (inclusive). AltStore will hide any updates that are not supported by the user's device."
+                }
+              },
+              "required": [
+                "version",
+                "buildVersion",
+                "date",
+                "downloadURL",
+                "localizedDescription"
+              ]
+            },
+            "description": "For information on how to update your apps once they're published, see https://faq.altstore.io/developers/updating-apps"
+          },
+          "appPermissions": {
+            "type": "object",
+            "properties": {
+              "entitlements": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "A list of all entitlements used by the app and its app extensions."
+              },
+              "privacy": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "string"
+                },
+                "description": "A dictionary with all the \"UsageDescription\" keys in your app's Info.plist along with their descriptions. We recommend using the same descriptions already in your Info.plist."
+              }
+            },
+            "required": [
+              "entitlements",
+              "privacy"
+            ],
+            "description": "For security purposes, AltStore requires that sources list all entitlements and privacy permissions for every app. These will be checked against the downloaded .ipa, and AltStore will refuse to install any app whose permissions do not match."
+          }
+        },
+        "required": [
+          "name",
+          "bundleIdentifier",
+          "developerName",
+          "localizedDescription",
+          "iconURL",
+          "screenshots",
+          "versions",
+          "appPermissions"
+        ]
+      },
+      "description": "An ordered list of the apps in your source. "
+    },
+    "news": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of your News item."
+          },
+          "identifier": {
+            "type": "string",
+            "description": "A unique value to distinguish this News item from others in your source. A source cannot have multiple News items with the same identifier."
+          },
+          "caption": {
+            "type": "string",
+            "description": "A short, one-sentence description of your News item."
+          },
+          "date": {
+            "type": "string",
+            "description": "The publishing date for this News item. This should be in ISO 8601 format (e.g. 2023-2-17 or 2023-02-17T12:00:00-06:00)"
+          },
+          "tintColor": {
+            "type": "string",
+            "description": "The background color for your News item. This must be in hexadecimal format (e.g #F54F32 or F65432)"
+          },
+          "imageURL": {
+            "type": "string",
+            "description": "A link to the image you want featured with your News item. This will be scaled to fill a 67:40 aspect ratio."
+          },
+          "notify": {
+            "type": "boolean",
+            "description": "When true, AltStore will send a push notification about this News item when it next checks for updates in the background."
+          },
+          "url": {
+            "type": "string",
+            "description": "A link that AltStore should open when the News item is tapped. Links will be opened in an in-app web browser."
+          },
+          "appID": {
+            "type": "string",
+            "description": "The bundle identifier of an associated app. This will make the app's info banner appear below the News item, which will open the app's Store page when tapped."
+          }
+        },
+        "required": [
+          "title",
+          "identifier",
+          "caption",
+          "date"
+        ]
+      },
+      "description": "A list of the News items in your source. The ordering does not matter because AltStore will display them in reverse chronological order according to their date."
+    }
+  },
+  "required": [
+    "name",
+    "apps",
+    "news"
+  ],
+  "definitions": {
+    "screenshot_obj": {
+      "type": "object",
+      "properties": {
+        "imageURL": {
+          "type": "string",
+          "description": "Link to a screenshot of your app."
+        },
+        "width": {
+          "type": "number",
+          "description": "The pixel width of the image. If not provided, AltStore will assume a default size of 393 x 852 points (iPhone 15 in portrait mode). Important: All iPad screenshots must provide an explicit  width."
+        },
+        "height": {
+          "type": "number",
+          "description": "The pixel height of the image. If not provided, AltStore will assume a default size of 393 x 852 points (iPhone 15 in portrait mode). Important: All iPad screenshots must provide an explicit  width."
+        }
+      },
+      "required": [
+        "imageURL"
+      ]
+    },
+    "screenshot_str": {
+      "type": "string"
+    },
+    "screenshot": {
+      "oneOf": [
+        {
+          "$ref": "#/definitions/screenshot_obj"
+        },
+        {
+          "$ref": "#/definitions/screenshot_str"
+        }
+      ]
+    }
+  }
+}
